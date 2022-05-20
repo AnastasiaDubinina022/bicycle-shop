@@ -1,0 +1,171 @@
+/*@import "_null-styles";
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    &.lock {
+        // класс блокирует скролл при открытом меню бургер
+        @media (max-width: 767px) {
+            overflow: hidden;
+        }
+    }
+}
+.wrapper {
+    background: url(/img/fire-burger-5k-steak-wallpaper-preview.jpg) 0 0 / cover no-repeat;
+
+    min-height: 100%;
+    min-width: 100%;
+    color: white;
+    font-weight: 800;
+}
+
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0px 10px;
+}
+
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    &::before {
+        content: "";
+        left: 0;
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index: 2;
+    }
+
+    &__body {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        height: 80px;
+        align-items: center;
+        @media (max-width: 767px) {
+            height: 50px;
+        }
+    }
+
+    &__logo {
+        flex: 0 0 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        z-index: 3;
+
+        img {
+            max-width: 100%;
+            display: block; // лечится подрезание картинки внизу при скруглении
+        }
+        @media (max-width: 767px) {
+            flex: 0 0 40px;
+        }
+    }
+
+    &__burger {
+        display: none; //скрываем бургер для разрешений больше 768px
+        @media (max-width: 767px) {
+            display: block; //показываем бургер для моб.разрешений
+            position: relative;
+            width: 30px;
+            height: 20px;
+            z-index: 3;
+        }
+        &:before,
+        &::after {
+            content: "";
+            background-color: #fff;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            left: 0;
+            transition: all 0.3s ease 0s;
+        }
+        &:before {
+            top: 0;
+        }
+        &::after {
+            bottom: 0;
+        }
+
+        span {
+            position: absolute;
+            background-color: #fff;
+            width: 100%;
+            height: 2px;
+            left: 0;
+            top: 9px;
+            transition: all 0.3s ease 0s;
+        }
+        &.active {
+            //этот класс добавляется при нажатии (js)
+            span {
+                transform: scale(0);
+            }
+        }
+        &.active::before {
+            transform: rotate(45deg);
+            top: 9px;
+        }
+        &.active::after {
+            transform: rotate(-45deg);
+            bottom: 9px;
+        }
+    }
+
+    &__menu {
+        @media (max-width: 767px) {
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            padding: 70px 0px 0px 0px;
+            transition: all 0.3s ease 0s;
+            opacity: 0.95;
+            overflow: auto; // возможность прокрутки меню, если все пункты не помещаются
+            &.active {
+                top: 0; //чтобы появлялось/исчезало при нажатии
+            }
+        }
+    }
+
+    &__list {
+        display: flex;
+        position: relative;
+        z-index: 2;
+        li {
+            margin: 0px 0px 0px 20px;
+            @media (max-width: 767px) {
+                margin: 0 0 30px 10px;
+            }
+        }
+        @media (max-width: 767px) {
+            display: block;
+            font-size: 24px;
+        }
+    }
+
+    &__link {
+        color: white;
+    }
+}
+
+.content {
+    padding: 100px;
+    &__text {
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 20px;
+    }
+    @media (max-width: 767px) {
+        padding: 70px 0 0 0;
+    }
+}
