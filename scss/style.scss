@@ -70,6 +70,7 @@ $green-color: #64c29e;
 
 body {
     font-family: Lato;
+
     &.lock {
         @media (max-width: 767px) {
             overflow: hidden;
@@ -128,6 +129,23 @@ body {
         top: 0%;
         transform: translate(-50%, 0);
         z-index: 2;
+        &_appearance {
+            opacity: 0;
+
+            //logo-burger animation
+            @keyframes logo-burger-appearance {
+                0% {
+                    opacity: 0;
+                    transform: translate(-50%, -100%);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                }
+            }
+
+            animation: logo-burger-appearance 0.4s 0.3s forwards;
+        }
     }
 }
 .menu {
@@ -177,12 +195,12 @@ body {
             background-color: #353738;
             padding: 150px 0 0 0;
             overflow: auto;
-            transform: translate(0px, -100%);
+            transform: translate(0, -100%);
             transition: all 0.4s linear 0s;
             opacity: 0;
 
             &.active {
-                transform: translate(0px, 0px);
+                transform: translate(0, 0);
                 opacity: 1;
             }
         }
@@ -433,11 +451,6 @@ body {
             line-height: 34px;
             font-style: italic;
         }
-        /* здесь
-        h2 {
-            @media {
-            }
-        }*/
     }
 }
 
